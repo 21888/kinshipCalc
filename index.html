@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#eff8ff" />
+    <title>亲戚称呼计算器</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell" id="appShell">
+      <section class="screen home-screen" id="homeScreen" aria-label="亲戚称呼计算器首页">
+        <header class="home-header">
+          <div>
+            <h1>亲戚称呼计算器</h1>
+            <p>快速算出亲戚称呼</p>
+          </div>
+          <button class="history-button" id="openHistory" type="button" aria-label="查看历史记录">
+            <span class="icon clock-icon" aria-hidden="true"></span>
+            <span>历史</span>
+          </button>
+        </header>
+
+        <section class="path-card soft-card" aria-labelledby="pathTitle">
+          <div class="section-header">
+            <h2 id="pathTitle">关系路径</h2>
+            <button class="text-button" id="clearPathTop" type="button">清空路径</button>
+          </div>
+          <div class="path-wrap" id="pathWrap" aria-live="polite"></div>
+        </section>
+
+        <section class="result-card" id="resultCard" hidden aria-live="polite">
+          <div class="result-copy">
+            <span class="result-label">计算结果</span>
+            <strong id="resultTitle">外公</strong>
+            <p id="resultDesc">妈妈的爸爸</p>
+            <span class="alias-pill" id="aliasPill" hidden></span>
+          </div>
+          <div class="result-illustration" aria-hidden="true">
+            <span class="family-mark">
+              <span></span>
+              <span></span>
+              <span></span>
+            </span>
+            <i></i>
+          </div>
+        </section>
+
+        <section class="relation-section" aria-labelledby="relationTitle">
+          <h2 id="relationTitle">常用关系</h2>
+          <div class="relation-grid" id="relationGrid"></div>
+        </section>
+
+        <section class="action-row" aria-label="操作">
+          <button class="icon-action" id="deleteStep" type="button" aria-label="删除">
+            <span class="icon delete-icon" aria-hidden="true"></span>
+          </button>
+          <button class="icon-action" id="clearAll" type="button" aria-label="清空">
+            <span class="icon trash-icon" aria-hidden="true"></span>
+          </button>
+          <button class="calculate-button" id="calculate" type="button">
+            <span>=</span>
+            <span>计算</span>
+          </button>
+        </section>
+
+        <section class="examples-section" aria-labelledby="examplesTitle">
+          <h2 id="examplesTitle">示例</h2>
+          <div class="examples-card" id="examplesList"></div>
+        </section>
+      </section>
+
+      <section class="screen history-screen" id="historyScreen" hidden aria-label="历史记录">
+        <header class="history-header">
+          <button class="back-button" id="backHome" type="button" aria-label="返回">
+            <span class="icon back-icon" aria-hidden="true"></span>
+          </button>
+          <h1>历史</h1>
+          <button class="clear-history" id="clearHistory" type="button">清空</button>
+        </header>
+        <div class="history-list" id="historyList"></div>
+      </section>
+    </main>
+
+    <template id="pathNodeTemplate">
+      <span class="path-token"></span>
+    </template>
+
+    <script src="./app.js" defer></script>
+  </body>
+</html>

@@ -28,6 +28,8 @@
 html {
   min-height: 100%;
   background: linear-gradient(135deg, var(--bg-start), var(--bg-mid) 48%, var(--bg-end));
+  touch-action: manipulation;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -35,12 +37,14 @@ body {
   margin: 0;
   color: var(--text);
   background: linear-gradient(135deg, var(--bg-start), var(--bg-mid) 48%, var(--bg-end));
+  touch-action: manipulation;
 }
 
 button {
   border: 0;
   font: inherit;
   cursor: pointer;
+  touch-action: manipulation;
   -webkit-tap-highlight-color: transparent;
 }
 

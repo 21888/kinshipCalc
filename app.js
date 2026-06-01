@@ -662,7 +662,41 @@ function bindEvents() {
   });
 }
 
+function preventDoubleTapZoom() {
+  const maxDelay = 320;
+  const maxDistance = 24;
+  let lastTapTime = Number.NEGATIVE_INFINITY;
+  let lastTapX = 0;
+  let lastTapY = 0;
+
+  document.addEventListener("touchend", (event) => {
+    if (event.touches.length > 0 || event.changedTouches.length !== 1) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const now = window.performance ? window.performance.now() : Date.now();
+    const deltaTime = now - lastTapTime;
+    const deltaX = touch.clientX - lastTapX;
+    const deltaY = touch.clientY - lastTapY;
+    const distance = Math.hypot(deltaX, deltaY);
+
+    if (deltaTime > 0 && deltaTime < maxDelay && distance < maxDistance) {
+      event.preventDefault();
+    }
+
+    lastTapTime = now;
+    lastTapX = touch.clientX;
+    lastTapY = touch.clientY;
+  }, { passive: false });
+
+  document.addEventListener("dblclick", (event) => {
+    event.preventDefault();
+  }, { passive: false });
+}
+
 function init() {
+  preventDoubleTapZoom();
   renderRelations();
   renderExamples();
   renderPath();
